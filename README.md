@@ -22,3 +22,33 @@ Hi! I'm Mari Muthu Prakash M, a passionate Computer Science student and full-sta
 📄 Resume download option
 📬 Contact form with EmailJS integration
 🔗 Social media links
+
+🛠️ Tech Stack
+Frontend
+HTML5
+CSS3
+JavaScript
+Tools & Libraries
+EmailJS (for contact form)
+Google Fonts
+Responsive Design Techniques
+
+📁 Project Structure
+portfolio/
+│── index.html
+│── assets/
+│   ├── images/
+│   ├── icons/
+│   ├── files/
+│── README.md
+
+📸 Projects Included
+🧠 Disease Prediction System
+🏙️ Smart City Complaint System
+🚗 BMW Showroom Website
+💊 Medico Pharmacy Website
+
+📬 Contact
+📧 Email: marimuthuprakash2005@gmail.com
+💼 LinkedIn: https://www.linkedin.com/in/mari-muthu-prakash-m
+🐙 GitHub: https://github.com/prakash200514
