@@ -48,6 +48,29 @@ portfolio/
 🚗 BMW Showroom Website
 💊 Medico Pharmacy Website
 
+🌍 Live Website
+
+👉 https://mariportfolio.selfmade.express
+
+⚙️ How to Run Locally
+Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+Open the project folder
+Run index.html in your browser
+
+📌 Future Improvements
+Add backend integration
+Improve project filtering
+Add blog section
+Dark/Light mode toggle
+
+⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
+
+📄 License
+
+This project is open-source and free to use.
 📬 Contact
 📧 Email: marimuthuprakash2005@gmail.com
 💼 LinkedIn: https://www.linkedin.com/in/mari-muthu-prakash-m
