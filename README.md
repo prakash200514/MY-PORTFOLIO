@@ -1,16 +1,24 @@
-# React + Vite
+🌐 Mari Muthu Prakash M — Portfolio Website
+🚀 About the Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my personal portfolio website built to showcase my skills, projects, and experience as a Full Stack Web Developer.
 
-Currently, two official plugins are available:
+The website highlights my journey, technical expertise, and real-world projects with a modern UI and smooth user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+👨‍💻 About Me
 
-## React Compiler
+Hi! I'm Mari Muthu Prakash M, a passionate Computer Science student and full-stack developer.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎓 Pursuing B.Sc Computer Science
+💡 Passionate about Web Development & UI Design
+🚀 Love building real-world projects
+📍 Tirunelveli, Tamil Nadu
+✨ Features
+🌟 Modern and responsive UI design
+🎨 Smooth animations and scroll effects
+📱 Mobile-friendly layout
+📂 Projects showcase section
+🧠 Skills & technologies section
+📄 Resume download option
+📬 Contact form with EmailJS integration
+🔗 Social media links
