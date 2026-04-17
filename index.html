@@ -7,7 +7,8 @@
     <meta name="keywords" content="Mari Muthu Prakash, web developer, full stack, portfolio, React, PHP, MySQL" />
     <title>MARI MUTHU PRAKASH M — Full Stack Developer</title>
     <link rel="canonical" href="https://mariportfolio.selfmade.express" />
-    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/png" />
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="./assets/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -1018,21 +1019,44 @@
       // ── Contact form ──
       document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Basic validation check
+        if (!this.checkValidity()) {
+          this.reportValidity();
+          return;
+        }
+
         const btn = document.getElementById('submitBtn');
         const txt = document.getElementById('submitText');
+        
+        // Visual loading state
         btn.disabled = true;
-        txt.textContent = 'Sending…';
+        btn.style.opacity = '0.7';
+        txt.textContent = 'Sending Message...';
 
         try {
-          await emailjs.sendForm('service_hqm7jqx', 'template_default', this);
-          showToast('Message sent successfully!', 'success');
-          this.reset();
+          // Sending via EmailJS
+          // NOTE: service_hqm7jqx and template_default must be correctly configured in your dashboard
+          const response = await emailjs.sendForm('service_hqm7jqx', 'template_default', this);
+          
+          if (response.status === 200) {
+            showToast('Message sent successfully!', 'success');
+            this.reset();
+          } else {
+            throw new Error('Unexpected response status');
+          }
         } catch(err) {
-          // fallback: show success anyway if configured
-          showToast('Message sent! I\'ll reply soon.', 'success');
-          this.reset();
+          console.error('EmailJS Error:', err);
+          
+          // Show real error message
+          const errorMsg = err?.text || err?.message || 'Failed to send message';
+          showToast('Error: ' + errorMsg, 'error');
+          
+          // Tip for the user
+          console.log('%c Tip: Check if your Service ID, Template ID, and Public Key are correct in EmailJS dashboard.', 'color: #7c3aed; font-weight: bold;');
         } finally {
           btn.disabled = false;
+          btn.style.opacity = '1';
           txt.textContent = 'Send Message';
         }
       });
