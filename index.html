@@ -1505,12 +1505,6 @@
               <span>Skills</span>
             </a>
           </li>
-          <li>
-            <a href="#certifications" data-nav="certifications">
-              <i data-lucide="award"></i>
-              <span>Certifications</span>
-            </a>
-          </li>
 
           <li>
             <a href="#contact" data-nav="contact">
@@ -1902,39 +1896,6 @@
         </div>
       </section>
 
-      <!-- ── CERTIFICATIONS ── -->
-      <section id="certifications">
-        <div class="section-eyebrow reveal">My Credentials</div>
-        <h2 class="section-title reveal">Certifications &amp; Badges</h2>
-        <p class="section-subtitle reveal">Verified proof of technical competence and continuous learning.</p>
-        
-        <div class="about-grid" style="grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 20px;">
-          <div class="glass-card reveal" style="padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
-            <div style="background:rgba(124,58,237,0.1); padding:10px; border-radius:12px; color:#c084fc; flex-shrink: 0;"><i data-lucide="award" style="width:28px; height:28px;"></i></div>
-            <div>
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:600; margin-bottom:4px;">Advanced React &amp; Redux</h4>
-              <p style="color:var(--text-muted); font-size:0.75rem; margin-bottom:8px;">Issued by Meta • 2026</p>
-              <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5;">Deep dive into React performance hooks, Custom Hooks, state machines, and testing.</p>
-            </div>
-          </div>
-          <div class="glass-card reveal reveal-delay-1" style="padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
-            <div style="background:rgba(0,212,255,0.1); padding:10px; border-radius:12px; color:var(--accent-cyan); flex-shrink: 0;"><i data-lucide="award" style="width:28px; height:28px;"></i></div>
-            <div>
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:600; margin-bottom:4px;">PHP Web Developer Professional</h4>
-              <p style="color:var(--text-muted); font-size:0.75rem; margin-bottom:8px;">Issued by Zend Technology • 2026</p>
-              <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5;">Mastery of server-side programming, security headers, MySQL profiling, and OOP PHP.</p>
-            </div>
-          </div>
-          <div class="glass-card reveal reveal-delay-2" style="padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
-            <div style="background:rgba(16,185,129,0.1); padding:10px; border-radius:12px; color:#10b981; flex-shrink: 0;"><i data-lucide="award" style="width:28px; height:28px;"></i></div>
-            <div>
-              <h4 style="color:#fff; font-size:1.05rem; font-weight:600; margin-bottom:4px;">Full Stack Web Engineering</h4>
-              <p style="color:var(--text-muted); font-size:0.75rem; margin-bottom:8px;">Issued by Udemy Academic • 2025</p>
-              <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5;">Comprehensive path including HTML5, CSS3, JS, Node, Express, PHP, Git, and Docker.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
 
       <!-- ── CONTACT ── -->
@@ -2081,7 +2042,7 @@
 
       // ── Active nav ──
       function updateActiveNav() {
-        const sections = ['home', 'about', 'education', 'experience', 'portfolio', 'skills', 'certifications', 'contact'];
+        const sections = ['home', 'about', 'education', 'experience', 'portfolio', 'skills', 'contact'];
         let current = 'home';
         sections.forEach(id => {
           const el = document.getElementById(id);
