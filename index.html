@@ -423,41 +423,41 @@
 
       .resume-column-title {
         font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em;
-        text-transform: uppercase; color: var(--accent-violet); margin-bottom: 24px;
+        text-transform: uppercase; color: var(--accent-violet); margin-bottom: 16px;
         display: flex; align-items: center; gap: 10px;
       }
-      .resume-column-title::before { content: ''; width: 30px; height: 1px; background: var(--accent-violet); }
+      .resume-column-title::before { content: ''; width: 24px; height: 1px; background: var(--accent-violet); }
 
       .timeline { position: relative; }
       .timeline::before {
-        content: ''; position: absolute; left: 15px; top: 24px; bottom: 0; width: 1px;
+        content: ''; position: absolute; left: 11px; top: 18px; bottom: 8px; width: 1px;
         background: var(--accent-violet); opacity: 0.35;
       }
 
       .timeline-item {
-        display: flex; gap: 24px; margin-bottom: 32px;
-        padding-bottom: 32px; border-bottom: 1px solid var(--border);
+        display: flex; gap: 16px; margin-bottom: 16px;
+        padding-bottom: 16px; border-bottom: 1px solid var(--border);
       }
       .timeline-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
 
       .timeline-dot {
-        width: 30px; height: 30px; min-width: 30px; border-radius: 50%;
+        width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
         background: rgba(124,58,237,0.15); border: 2px solid rgba(124,58,237,0.5);
-        display: flex; align-items: center; justify-content: center; margin-top: 3px;
+        display: flex; align-items: center; justify-content: center; margin-top: 2px;
         position: relative; z-index: 1; transition: var(--transition);
       }
       .timeline-dot::after {
-        content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-violet);
+        content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-violet);
       }
       .timeline-item:hover .timeline-dot { border-color: var(--accent-violet); background: rgba(124,58,237,0.3); }
 
       .timeline-content { flex: 1; }
       .timeline-date {
         font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);
-        margin-bottom: 8px; font-weight: 700;
+        margin-bottom: 4px; font-weight: 700;
       }
-      .timeline-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
-      .timeline-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; }
+      .timeline-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 3px; }
+      .timeline-sub { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 3px; }
       .timeline-location { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); }
 
       /* ── Skills Section ── */
@@ -1744,9 +1744,9 @@
         <h2 class="section-title reveal">Education Details</h2>
         <p class="section-subtitle reveal">The academic institutions and milestones that formed my foundation.</p>
 
-        <div style="max-width: 900px; margin: 40px auto 0; width: 100%;">
+        <div style="max-width: 760px; margin: 24px 0 0; width: 100%;">
           <!-- Education -->
-          <div class="glass-card reveal" style="width: 100%; padding: 40px;">
+          <div class="glass-card reveal" style="width: 100%; padding: 24px 28px; border-radius: 14px;">
             <div class="resume-column-title">Education</div>
             <div class="timeline">
               <div class="timeline-item">
@@ -1787,9 +1787,9 @@
         <h2 class="section-title reveal">Work Experience</h2>
         <p class="section-subtitle reveal">Professional roles, internships, and work achievements.</p>
 
-        <div style="max-width: 900px; margin: 40px auto 0; width: 100%;">
+        <div style="max-width: 760px; margin: 24px 0 0; width: 100%;">
           <!-- Work Experience -->
-          <div class="glass-card reveal" style="width: 100%; padding: 40px;">
+          <div class="glass-card reveal" style="width: 100%; padding: 24px 28px; border-radius: 14px;">
             <div class="resume-column-title">Experience</div>
             <div class="timeline">
               <div class="timeline-item">
