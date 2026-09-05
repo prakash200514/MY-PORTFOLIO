@@ -1505,6 +1505,12 @@
               <span>Skills</span>
             </a>
           </li>
+          <li>
+            <a href="#certifications" data-nav="certifications">
+              <i data-lucide="award"></i>
+              <span>Certifications</span>
+            </a>
+          </li>
 
           <li>
             <a href="#contact" data-nav="contact">
@@ -1896,6 +1902,15 @@
         </div>
       </section>
 
+      <!-- ── CERTIFICATIONS ── -->
+      <section id="certifications">
+        <div class="section-eyebrow reveal">My Credentials</div>
+        <h2 class="section-title reveal">Certifications &amp; Badges</h2>
+        <p class="section-subtitle reveal">Verified proof of technical competence and continuous learning.</p>
+        
+        <div class="about-grid" style="grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 20px;">
+        </div>
+      </section>
 
 
       <!-- ── CONTACT ── -->
@@ -2042,7 +2057,7 @@
 
       // ── Active nav ──
       function updateActiveNav() {
-        const sections = ['home', 'about', 'education', 'experience', 'portfolio', 'skills', 'contact'];
+        const sections = ['home', 'about', 'education', 'experience', 'portfolio', 'skills', 'certifications', 'contact'];
         let current = 'home';
         sections.forEach(id => {
           const el = document.getElementById(id);
