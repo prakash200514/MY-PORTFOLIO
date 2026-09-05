@@ -1917,8 +1917,8 @@
         
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 380px)); gap: 24px;">
           <div class="glass-card reveal cert-card-visual" style="max-width: 380px; width: 100%; overflow: hidden; padding: 0; display: flex; flex-direction: column; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
-            <div class="cert-img-wrapper" style="position: relative; width: 100%; height: 190px; overflow: hidden; background: #0a0f1d; cursor: pointer;" onclick="openCertModal('./assets/images/python_swayam_cert.svg', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024')">
-              <img src="./assets/images/python_swayam_cert.svg" alt="Programming in Python Certificate" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.4s ease;" class="cert-preview-img" />
+            <div class="cert-img-wrapper" style="position: relative; width: 100%; height: 190px; overflow: hidden; background: #0a0f1d; cursor: pointer;" onclick="openCertModal('./assets/images/python_swayam_cert.png', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024', './assets/files/python_swayam_cert.pdf')">
+              <img src="./assets/images/python_swayam_cert.png" alt="Programming in Python Original Certificate" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.4s ease;" class="cert-preview-img" />
               <div class="cert-img-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,15,29,0.95), rgba(10,15,29,0.3)); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center;">
                 <span class="btn-cert-view-overlay" style="background: var(--accent-cyan); color: #000; font-weight: 600; padding: 8px 16px; border-radius: 20px; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(0,212,255,0.4);">
                   <i data-lucide="eye" style="width:16px; height:16px;"></i> Click to View
@@ -1935,7 +1935,7 @@
                 <p style="color:var(--text-muted); font-size:0.78rem; margin-bottom:8px;">Issued by SWAYAM (Dibrugarh University)</p>
                 <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.45;">Successfully completed 4-credit course in Python programming with online assessments and proctored examination score of 57%.</p>
               </div>
-              <button onclick="openCertModal('./assets/images/python_swayam_cert.svg', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024')" class="btn-outline" style="margin-top: 8px; padding: 8px 14px; font-size: 0.82rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(0,212,255,0.4); color: var(--accent-cyan); cursor: pointer; border-radius: 8px;">
+              <button onclick="openCertModal('./assets/images/python_swayam_cert.png', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024', './assets/files/python_swayam_cert.pdf')" class="btn-outline" style="margin-top: 8px; padding: 8px 14px; font-size: 0.82rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(0,212,255,0.4); color: var(--accent-cyan); cursor: pointer; border-radius: 8px;">
                 <i data-lucide="external-link" style="width: 14px; height: 14px;"></i> View Certificate
               </button>
             </div>
@@ -2176,12 +2176,21 @@
       });
 
       // ── Certificate Lightbox Modal Handlers ──
-      function openCertModal(imgSrc, title, sub) {
+      function openCertModal(imgSrc, title, sub, pdfSrc) {
         const modal = document.getElementById('certModal');
         document.getElementById('modalCertImg').src = imgSrc;
         document.getElementById('modalCertTitle').textContent = title;
         document.getElementById('modalCertSub').textContent = sub;
-        document.getElementById('modalCertDownload').href = imgSrc;
+        document.getElementById('modalCertImgLink').href = imgSrc;
+        
+        const pdfLink = document.getElementById('modalCertPdfLink');
+        if (pdfSrc) {
+          pdfLink.href = pdfSrc;
+          pdfLink.style.display = 'inline-flex';
+        } else {
+          pdfLink.style.display = 'none';
+        }
+
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       }
@@ -2216,11 +2225,14 @@
         <button onclick="closeCertModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:20px; transition:background 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&times;</button>
       </div>
       <div style="padding:24px; overflow-y:auto; display:flex; justify-content:center; align-items:center; background:#050811; flex-grow:1;">
-        <img id="modalCertImg" src="" alt="Certificate Preview" style="max-width:100%; max-height:72vh; object-fit:contain; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+        <img id="modalCertImg" src="" alt="Original Certificate Preview" style="max-width:100%; max-height:72vh; object-fit:contain; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
       </div>
       <div style="padding:16px 24px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:flex-end; gap:12px; background:rgba(255,255,255,0.03);">
-        <a id="modalCertDownload" href="" target="_blank" class="btn-outline" style="padding:8px 20px; font-size:0.88rem; display:flex; align-items:center; gap:8px; color:var(--accent-cyan); border-color:rgba(0,212,255,0.4); text-decoration:none; border-radius:10px;">
-          <i data-lucide="download" style="width:16px; height:16px;"></i> Open Full Image
+        <a id="modalCertImgLink" href="" target="_blank" class="btn-outline" style="padding:8px 18px; font-size:0.85rem; display:flex; align-items:center; gap:6px; color:var(--text-secondary); border-color:rgba(255,255,255,0.2); text-decoration:none; border-radius:8px;">
+          <i data-lucide="image" style="width:16px; height:16px;"></i> Full Image
+        </a>
+        <a id="modalCertPdfLink" href="" target="_blank" class="btn-outline" style="padding:8px 18px; font-size:0.85rem; display:flex; align-items:center; gap:6px; color:var(--accent-cyan); border-color:rgba(0,212,255,0.4); text-decoration:none; border-radius:8px;">
+          <i data-lucide="file-text" style="width:16px; height:16px;"></i> Open Original PDF
         </a>
       </div>
     </div>
