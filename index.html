@@ -18,12 +18,16 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
       (function() {
-        const saved = localStorage.getItem('theme');
-        if (saved) {
-          document.documentElement.setAttribute('data-theme', saved);
-        } else {
-          const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+          } else {
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
         }
       })();
     </script>
@@ -111,7 +115,7 @@
         --border: #dceaf5;
         --border-glow: rgba(0, 143, 213, 0.25);
         --sidebar-bg: #ffffff;
-        --header-bg: rgba(247, 251, 255, 0.92);
+        --header-bg: rgba(247, 251, 255, 0.9);
 
         --accent-cyan: #008fd5;
         --accent-violet: #008fd5;
@@ -1492,6 +1496,15 @@
       .cert-card-visual:hover .cert-img-overlay {
         opacity: 1 !important;
       }
+      .cert-view-btn {
+        border-color: rgba(0, 212, 255, 0.4);
+        color: var(--accent-cyan);
+        background: transparent;
+        transition: var(--transition);
+      }
+      .cert-view-btn:hover {
+        background: rgba(0, 212, 255, 0.08);
+      }
       /* ── Theme Toggle Button Styles ── */
       .theme-toggle-btn {
         display: inline-flex;
@@ -1539,9 +1552,22 @@
       }
 
       /* ── Comprehensive Light Mode Component Overrides ── */
+      [data-theme="light"] .sidebar-logo .logo-icon {
+        filter: drop-shadow(0 2px 8px rgba(0, 143, 213, 0.25));
+      }
+      [data-theme="light"] .theme-toggle-btn {
+        background: #f0f7fd;
+        border-color: #dceaf5;
+      }
+      [data-theme="light"] .theme-toggle-btn:hover {
+        background: #e1effa;
+        border-color: #008fd5;
+        box-shadow: 0 4px 14px rgba(0, 143, 213, 0.2);
+      }
       [data-theme="light"] .sidebar-nav a.active {
         background: var(--grad-1);
         color: #ffffff;
+        border-color: transparent;
         box-shadow: 0 4px 15px rgba(0, 143, 213, 0.35);
       }
       [data-theme="light"] .sidebar-nav a.active svg {
@@ -1563,6 +1589,7 @@
         background: #e1effa;
         border-color: #008fd5;
         color: #008fd5;
+        box-shadow: 0 4px 15px rgba(0, 143, 213, 0.15);
       }
       [data-theme="light"] .sidebar-socials a {
         background: #f0f7fd;
@@ -1622,6 +1649,11 @@
       [data-theme="light"] .btn-outline-rect:hover {
         border-color: #008fd5;
         background: #f0f7fd;
+        color: #008fd5;
+      }
+      [data-theme="light"] .btn-outline:hover {
+        background: #f0f7fd;
+        border-color: #008fd5;
         color: #008fd5;
       }
       [data-theme="light"] .hero-tech-chips {
@@ -1728,6 +1760,32 @@
       [data-theme="light"] .project-overlay {
         background: linear-gradient(to top, rgba(11, 31, 58, 0.95) 0%, rgba(11, 31, 58, 0.6) 50%, transparent 100%);
       }
+      [data-theme="light"] .project-overlay .project-name {
+        color: #ffffff;
+      }
+      [data-theme="light"] .project-overlay .project-desc {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      [data-theme="light"] .project-overlay .tag-cyan {
+        color: #38bdf8;
+        background: rgba(56, 189, 248, 0.2);
+        border-color: rgba(56, 189, 248, 0.4);
+      }
+      [data-theme="light"] .project-overlay .tag-violet {
+        color: #c084fc;
+        background: rgba(192, 132, 252, 0.2);
+        border-color: rgba(192, 132, 252, 0.4);
+      }
+      [data-theme="light"] .project-overlay .tag-green {
+        color: #34d399;
+        background: rgba(52, 211, 153, 0.2);
+        border-color: rgba(52, 211, 153, 0.4);
+      }
+      [data-theme="light"] .project-overlay .tag-orange {
+        color: #fbbf24;
+        background: rgba(251, 191, 36, 0.2);
+        border-color: rgba(251, 191, 36, 0.4);
+      }
       [data-theme="light"] .project-label {
         background: rgba(255, 255, 255, 0.92);
         border-color: #dceaf5;
@@ -1792,6 +1850,16 @@
       [data-theme="light"] .cert-card-visual h4 {
         color: #0b1f3a !important;
       }
+      [data-theme="light"] .cert-view-btn {
+        border-color: #008fd5 !important;
+        color: #008fd5 !important;
+        background: #f0f7fd !important;
+      }
+      [data-theme="light"] .cert-view-btn:hover {
+        background: #008fd5 !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(0, 143, 213, 0.3) !important;
+      }
       [data-theme="light"] .cert-img-wrapper {
         background: #edf4fb !important;
       }
@@ -1832,6 +1900,27 @@
         background: #edf4fb !important;
         border-color: #dceaf5 !important;
       }
+      [data-theme="light"] #modalCertImgLink {
+        background: #ffffff !important;
+        border-color: #dceaf5 !important;
+        color: #50627a !important;
+      }
+      [data-theme="light"] #modalCertImgLink:hover {
+        border-color: #008fd5 !important;
+        color: #008fd5 !important;
+        background: #f0f7fd !important;
+      }
+      [data-theme="light"] #modalCertPdfLink {
+        background: #008fd5 !important;
+        border-color: #008fd5 !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 15px rgba(0, 143, 213, 0.35) !important;
+      }
+      [data-theme="light"] #modalCertPdfLink:hover {
+        background: #149be6 !important;
+        border-color: #149be6 !important;
+        box-shadow: 0 6px 20px rgba(0, 143, 213, 0.45) !important;
+      }
       [data-theme="light"] .contact-link {
         background: #ffffff;
         border-color: #dceaf5;
@@ -1840,6 +1929,9 @@
         border-color: #008fd5;
         background: #f0f7fd;
         box-shadow: 0 4px 16px rgba(0, 143, 213, 0.1);
+      }
+      [data-theme="light"] .contact-link-icon {
+        background: rgba(0, 143, 213, 0.08) !important;
       }
       [data-theme="light"] .social-btn {
         background: #ffffff;
@@ -1856,6 +1948,13 @@
         background: #ffffff;
         border-color: #dceaf5;
         color: #0b1f3a;
+      }
+      [data-theme="light"] .form-field input::placeholder,
+      [data-theme="light"] .form-field textarea::placeholder {
+        color: #7e91a9;
+      }
+      [data-theme="light"] .form-field label {
+        color: #50627a;
       }
       [data-theme="light"] .form-field input:focus,
       [data-theme="light"] .form-field textarea:focus {
@@ -1875,8 +1974,26 @@
         border-color: #dceaf5;
         background: #f7fbff;
       }
+      [data-theme="light"] .footer-copy {
+        color: #50627a;
+      }
       [data-theme="light"] .footer-back {
         color: #008fd5;
+      }
+      [data-theme="light"] .footer-back:hover {
+        color: #149be6;
+      }
+      [data-theme="light"] .toast.success {
+        background: #ecfdf5;
+        border-color: #a7f3d0;
+        color: #065f46;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      }
+      [data-theme="light"] .toast.error {
+        background: #fef2f2;
+        border-color: #fecaca;
+        color: #991b1b;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
       }
       [data-theme="light"] .orb {
         opacity: 0.035;
@@ -2404,7 +2521,7 @@
         <p class="section-subtitle reveal">Verified proof of technical competence and continuous learning.</p>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 380px)); gap: 24px;">
-          <div class="glass-card reveal cert-card-visual" style="max-width: 380px; width: 100%; overflow: hidden; padding: 0; display: flex; flex-direction: column; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+          <div class="glass-card reveal cert-card-visual" style="max-width: 380px; width: 100%; overflow: hidden; padding: 0; display: flex; flex-direction: column; border-radius: 14px; border: 1px solid var(--border); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
             <div class="cert-img-wrapper" style="position: relative; width: 100%; height: 190px; overflow: hidden; background: #0a0f1d; cursor: pointer;" onclick="openCertModal('./assets/images/python_swayam_cert.png', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024', './assets/files/python_swayam_cert.pdf')">
               <img src="./assets/images/python_swayam_cert.png" alt="Programming in Python Original Certificate" style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.4s ease;" class="cert-preview-img" />
               <div class="cert-img-overlay" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,15,29,0.95), rgba(10,15,29,0.3)); opacity: 0; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center;">
@@ -2423,7 +2540,7 @@
                 <p style="color:var(--text-muted); font-size:0.78rem; margin-bottom:8px;">Issued by SWAYAM (Dibrugarh University)</p>
                 <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.45;">Successfully completed 4-credit course in Python programming with online assessments and proctored examination score of 57%.</p>
               </div>
-              <button onclick="openCertModal('./assets/images/python_swayam_cert.png', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024', './assets/files/python_swayam_cert.pdf')" class="btn-outline" style="margin-top: 8px; padding: 8px 14px; font-size: 0.82rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(0,212,255,0.4); color: var(--accent-cyan); cursor: pointer; border-radius: 8px;">
+              <button onclick="openCertModal('./assets/images/python_swayam_cert.png', 'Programming in Python', 'SWAYAM (Dibrugarh University) • Jun 2024', './assets/files/python_swayam_cert.pdf')" class="btn-outline cert-view-btn" style="margin-top: 8px; padding: 8px 14px; font-size: 0.82rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border-radius: 8px;">
                 <i data-lucide="external-link" style="width: 14px; height: 14px;"></i> View Certificate
               </button>
             </div>
@@ -2694,10 +2811,14 @@
       });
 
       // ── Dual-Theme Controller ──
-      function setTheme(theme) {
-        document.documentElement.classList.add('theme-transitioning');
+      function setTheme(theme, animate = false) {
+        if (animate) {
+          document.documentElement.classList.add('theme-transitioning');
+        }
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        try {
+          localStorage.setItem('theme', theme);
+        } catch (e) {}
         
         const isDark = theme === 'dark';
         const label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
@@ -2708,25 +2829,29 @@
         if (toggleDesktop) {
           toggleDesktop.setAttribute('aria-label', label);
           toggleDesktop.setAttribute('title', label);
+          toggleDesktop.setAttribute('aria-pressed', (!isDark).toString());
         }
         if (toggleMobile) {
           toggleMobile.setAttribute('aria-label', label);
           toggleMobile.setAttribute('title', label);
+          toggleMobile.setAttribute('aria-pressed', (!isDark).toString());
         }
         
         if (window.lucide && typeof lucide.createIcons === 'function') {
           lucide.createIcons();
         }
         
-        setTimeout(() => {
-          document.documentElement.classList.remove('theme-transitioning');
-        }, 350);
+        if (animate) {
+          setTimeout(() => {
+            document.documentElement.classList.remove('theme-transitioning');
+          }, 350);
+        }
       }
 
       function toggleTheme() {
         const current = document.documentElement.getAttribute('data-theme') || 'dark';
         const next = current === 'dark' ? 'light' : 'dark';
-        setTheme(next);
+        setTheme(next, true);
       }
 
       const desktopBtn = document.getElementById('themeToggleDesktop');
@@ -2736,14 +2861,16 @@
       if (mobileBtn) mobileBtn.addEventListener('click', toggleTheme);
 
       // Listen for system theme changes if no local storage preference is set
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-          setTheme(e.matches ? 'dark' : 'light');
-        }
-      });
+      try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'dark' : 'light', true);
+          }
+        });
+      } catch (e) {}
 
-      // Synchronize button labels on initial load
-      setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+      // Synchronize button labels on initial load without transition animation
+      setTheme(document.documentElement.getAttribute('data-theme') || 'dark', false);
 
       // Initialize Lucide Icons
       lucide.createIcons();
