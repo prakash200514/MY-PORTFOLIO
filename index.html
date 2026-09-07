@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>emailjs.init('Z2VCV_Y3S1bDEaen7')</script>
+    <script>emailjs.init('0TgGgypcK_W1d2IBc')</script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Lenis Smooth Scroll -->
@@ -2847,32 +2847,61 @@
         }
 
         try {
-          const formData = new FormData();
-          formData.append('access_key', 'f2084c93-71a6-4688-b05f-3ff20c2819ca');
-          formData.append('from_name', 'MMP.dev Portfolio');
-          formData.append('subject', `New Portfolio Inquiry from ${name || 'Visitor'}`);
-          formData.append('replyto', email);
-          formData.append('Sender Name', name || 'Anonymous');
-          formData.append('Company', company || 'None');
-          formData.append('Email Address', email);
-          formData.append('Phone Number', phone || 'Not Provided');
-          formData.append('Message', msg);
-          formData.append('Portfolio Source', 'https://prakash200514.github.io/My-Portfolio/');
-          formData.append('Submitted At', new Date().toLocaleString());
+          const templateParams = {
+            from_name: name || 'Visitor',
+            name: name || 'Visitor',
+            reply_to: email,
+            email: email,
+            phone: phone || 'Not Provided',
+            company: company || 'N/A',
+            message: msg,
+            submitted_at: new Date().toLocaleString()
+          };
 
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
+          let sent = false;
 
-          const result = await response.json();
-          
-          if (result.success === true || result.success === 'true') {
+          // 1. Primary: Send using EmailJS with the custom Shopify-style HTML template
+          if (window.emailjs) {
+            try {
+              const res = await emailjs.send('service_dhexpwr', 'template_jmxv0xj', templateParams);
+              if (res.status === 200 || res.text === 'OK') {
+                sent = true;
+              }
+            } catch (emailjsErr) {
+              console.warn('EmailJS error, falling back to Web3Forms:', emailjsErr);
+            }
+          }
+
+          // 2. Fallback: Web3Forms if EmailJS is unavailable
+          if (!sent) {
+            const formData = new FormData();
+            formData.append('access_key', 'f2084c93-71a6-4688-b05f-3ff20c2819ca');
+            formData.append('from_name', 'MMP.dev Portfolio');
+            formData.append('subject', `New Portfolio Inquiry from ${name || 'Visitor'}`);
+            formData.append('replyto', email);
+            formData.append('Sender Name', name || 'Anonymous');
+            formData.append('Company', company || 'None');
+            formData.append('Email Address', email);
+            formData.append('Phone Number', phone || 'Not Provided');
+            formData.append('Message', msg);
+            formData.append('Portfolio Source', 'https://prakash200514.github.io/My-Portfolio/');
+            formData.append('Submitted At', new Date().toLocaleString());
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const result = await response.json();
+            if (result.success === true || result.success === 'true') {
+              sent = true;
+            }
+          }
+
+          if (sent) {
             showToast('Message sent successfully! I will reply as soon as possible.', 'success');
             this.reset();
           } else {
-            console.warn('Web3Forms response:', result);
-            showToast(result.message || 'Error sending message. Opening mail app...', 'error');
+            showToast('Opening your mail app to complete sending...', 'error');
             setTimeout(sendViaMailto, 1000);
           }
         } catch(err) {
