@@ -2833,8 +2833,19 @@
         btn.style.opacity = '0.7';
         txt.textContent = 'Sending Message...';
 
+        const name = (document.getElementById('form_name')?.value || '').trim();
+        const email = (document.getElementById('email')?.value || '').trim();
+        const phone = (document.getElementById('number')?.value || '').trim();
+        const company = (document.getElementById('company')?.value || '').trim();
+        const msg = (document.getElementById('message')?.value || '').trim();
+
+        function sendViaMailto() {
+          const subject = encodeURIComponent(`Portfolio Inquiry from ${name || 'Visitor'}`);
+          const body = encodeURIComponent(`Hi Prakash,\n\n${msg}\n\n---\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company || 'N/A'}`);
+          window.location.href = `mailto:marimuthuprakash2005@gmail.com?subject=${subject}&body=${body}`;
+        }
+
         try {
-          // Sending via FormSubmit (Zero-Config)
           const formData = new FormData(this);
           const response = await fetch('https://formsubmit.co/ajax/marimuthuprakash2005@gmail.com', {
             method: 'POST',
@@ -2850,15 +2861,14 @@
             showToast('Message sent successfully! I will reply as soon as possible.', 'success');
             this.reset();
           } else {
-            if (result.message && result.message.toLowerCase().includes('activation')) {
-              showToast('One-time activation required: Check marimuthuprakash2005@gmail.com to activate your form.', 'error');
-            } else {
-              throw new Error(result.message || 'Submission failed. Please try again or email directly.');
-            }
+            // If form service needs activation or fails, fallback to direct email compose
+            showToast('Opening your mail app to send directly...', 'success');
+            setTimeout(sendViaMailto, 800);
           }
         } catch(err) {
           console.error('Form Error:', err);
-          showToast(err.message || 'Error sending message. Please email directly.', 'error');
+          showToast('Opening your mail app to send directly...', 'success');
+          setTimeout(sendViaMailto, 800);
         } finally {
           btn.disabled = false;
           btn.style.opacity = '1';
