@@ -2643,10 +2643,13 @@
           <!-- Right: Form -->
           <div class="glass-card reveal reveal-delay-1">
             <form class="contact-form" id="contactForm" autocomplete="off" novalidate>
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
               <div class="form-row">
                 <div class="form-field">
                   <label for="form_name">Your Name *</label>
-                  <input type="text" id="form_name" name="form_name" placeholder="John Doe" required />
+                  <input type="text" id="form_name" name="name" placeholder="John Doe" required />
                 </div>
                 <div class="form-field">
                   <label for="company">Company</label>
@@ -2844,14 +2847,18 @@
           const result = await response.json();
           
           if (result.success === 'true' || result.success === true) {
-            showToast('Message sent! Please check your email inbox to activate.', 'success');
+            showToast('Message sent successfully! I will reply as soon as possible.', 'success');
             this.reset();
           } else {
-            throw new Error(result.message || 'Submission failed');
+            if (result.message && result.message.toLowerCase().includes('activation')) {
+              showToast('One-time activation required: Check marimuthuprakash2005@gmail.com to activate your form.', 'error');
+            } else {
+              throw new Error(result.message || 'Submission failed. Please try again or email directly.');
+            }
           }
         } catch(err) {
           console.error('Form Error:', err);
-          showToast('Error: ' + err.message, 'error');
+          showToast(err.message || 'Error sending message. Please email directly.', 'error');
         } finally {
           btn.disabled = false;
           btn.style.opacity = '1';
