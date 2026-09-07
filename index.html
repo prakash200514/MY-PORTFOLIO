@@ -19,6 +19,11 @@
     <!-- Lenis Smooth Scroll -->
     <script src="./assets/js/lenis.min.js"></script>
     <script>
+      if (typeof Lenis === 'undefined') {
+        document.write('<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"><\/script>');
+      }
+    </script>
+    <script>
       (function() {
         try {
           const saved = localStorage.getItem('theme');
