@@ -2849,16 +2849,16 @@
         try {
           const formData = new FormData();
           formData.append('access_key', 'f2084c93-71a6-4688-b05f-3ff20c2819ca');
-          formData.append('from_name', 'MMP.dev | Portfolio Contact');
-          formData.append('subject', `🚀 New Inquiry from ${name || 'Visitor'} — MMP.dev`);
+          formData.append('from_name', 'MMP.dev Portfolio');
+          formData.append('subject', `New Portfolio Inquiry from ${name || 'Visitor'}`);
           formData.append('replyto', email);
-          formData.append('👤 Sender Name', name || 'Anonymous');
-          formData.append('💼 Company / Organization', company || 'Individual / None');
-          formData.append('📧 Email Address', email);
-          formData.append('📱 Phone Number', phone || 'Not Provided');
-          formData.append('💬 Message', msg);
-          formData.append('🌐 Portfolio Source', 'https://prakash200514.github.io/My-Portfolio/');
-          formData.append('🕒 Submitted At', new Date().toLocaleString());
+          formData.append('Sender Name', name || 'Anonymous');
+          formData.append('Company', company || 'None');
+          formData.append('Email Address', email);
+          formData.append('Phone Number', phone || 'Not Provided');
+          formData.append('Message', msg);
+          formData.append('Portfolio Source', 'https://prakash200514.github.io/My-Portfolio/');
+          formData.append('Submitted At', new Date().toLocaleString());
 
           const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
