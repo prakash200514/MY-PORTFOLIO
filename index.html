@@ -59,6 +59,7 @@
       }
       
       html {
+        scroll-behavior: smooth;
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
       }
@@ -2695,17 +2696,15 @@
       // ── Modern Smooth Scrolling (Lenis) ──
       let lenis = null;
       if (typeof Lenis !== 'undefined') {
-        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReducedMotion) {
+        try {
           lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            smoothTouch: false,
-            touchMultiplier: 1.5,
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
             wheelMultiplier: 1.0,
+            touchMultiplier: 1.5,
             infinite: false
           });
 
@@ -2718,10 +2717,13 @@
           lenis.on('scroll', () => {
             updateActiveNav();
           });
+        } catch (e) {
+          console.warn('Lenis smooth scroll initialization failed, falling back to native smooth scrolling:', e);
+          lenis = null;
         }
       }
 
-      // Fallback scroll listener for nav updates
+      // Scroll listener for nav updates
       window.addEventListener('scroll', () => {
         if (!lenis) updateActiveNav();
       }, { passive: true });
@@ -2862,16 +2864,24 @@
           const targetId = this.getAttribute('href');
           if (!targetId || targetId === '#') return;
           
-          const target = document.querySelector(targetId);
+          let target = null;
+          try {
+            target = document.querySelector(targetId);
+          } catch (err) {
+            return;
+          }
+
           if (target) {
             e.preventDefault();
             const offset = window.innerWidth < 1024 ? -75 : -20;
             
             if (lenis) {
+              lenis.start();
               lenis.scrollTo(target, {
                 offset: offset,
                 duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                force: true
               });
             } else {
               const targetPosition = target.getBoundingClientRect().top + window.scrollY + offset;
